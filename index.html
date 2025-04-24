@@ -38,11 +38,23 @@
     maxZoom: 20,
     attribution: '&copy; <a href="https://www.google.com/maps">Google</a>'
   });
+
+    // Thêm OSM mặc định
+  osm.addTo(map);
   
   // Thêm 1 marker (ví dụ tại Hà Nội)
   var marker = L.marker([20.9892, 105.7957]).addTo(map);
   marker.bindPopup("<b>Trường Đại học Hà Nội</b><br>Nơi bào mòn nhan sắc của Harley").openPopup();
 </script>
 
+  // Tạo điều khiển lớp nền
+  var baseLayers = {
+    "OpenStreetMap": osm,
+    "Google Satellite": googleSat
+  };
+  
+    L.control.layers(baseLayers).addTo(map);
+</script>
+  
 </body>
 </html>
