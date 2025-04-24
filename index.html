@@ -24,14 +24,14 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-  // Khởi tạo bản đồ và đặt vị trí trung tâm (tọa độ Việt Nam)
+  // Khởi tạo map
   var map = L.map('map').setView([14.0583, 108.2772], 6);
 
-  // Thêm lớp nền từ OpenStreetMap
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  // Lớp nền: OpenStreetMap
+  var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+  });
 
   // Lớp nền: Google Satellite
   var googleSat = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
@@ -39,22 +39,21 @@
     attribution: '&copy; <a href="https://www.google.com/maps">Google</a>'
   });
 
-    // Thêm OSM mặc định
+  // Thêm OSM mặc định
   osm.addTo(map);
-  
-  // Thêm 1 marker (ví dụ tại Hà Nội)
+
+  // Thêm marker ví dụ
   var marker = L.marker([20.9892, 105.7957]).addTo(map);
   marker.bindPopup("<b>Trường Đại học Hà Nội</b><br>Nơi bào mòn nhan sắc của Harley").openPopup();
-</script>
 
   // Tạo điều khiển lớp nền
   var baseLayers = {
     "OpenStreetMap": osm,
     "Google Satellite": googleSat
   };
-  
-    L.control.layers(baseLayers).addTo(map);
+
+  L.control.layers(baseLayers).addTo(map);
 </script>
-  
+
 </body>
 </html>
